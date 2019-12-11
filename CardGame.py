@@ -32,7 +32,7 @@ class Card(object):
 
 
 def deck():
-    """Returns an array that represents a standard deck of
+    """Returns an list that represents a standard deck of
     52 cards plus four penalty cards"""
     arr = []
     suits = ['Spades', 'Clubs', 'Hearts', 'Diamonds']
@@ -50,13 +50,13 @@ def deck():
     return arr
 
 
-def compare(playersArray):
+def compare(players_list):
     """Returns the player who is currently holding the
     highest rated card"""
     max_suit = 0
     max_face = 0
     max_player = None
-    for i in playersArray:
+    for i in players_list:
         if (i.current_card.face != 'Penalty'):
             if i.current_card.face == 'Jack':
                 card_face = 11
@@ -120,15 +120,15 @@ def game():
         players[i] = Player(name, 0, i, None)
 
     while(game_finished_flag == 0):
-        deck_array = deck()
+        deck_list = deck()
         #Shuffle deck
-        random.shuffle(deck_array)
+        random.shuffle(deck_list)
         for i in players:
             print('Player ' + i.name + ", it is"
                   " currently your turn. Please press enter to draw card.")
             input()
 
-            card = deck_array.pop()
+            card = deck_list.pop()
 
             if card.face == 'Penalty':
                 print("You have selected a penalty card\n")
@@ -156,7 +156,7 @@ def game():
             if i.score > max_score:
                 max_score = i.score
 
-        #Check that there are no duplicate scores over 21 and that
+        #Check that there are no duplicate max scores over 21 and that
         #scores over 21 exceed all other scores by at least 2
         scores = []
         if(max_score >= 21):
@@ -164,7 +164,8 @@ def game():
             for i in players:
                 if i.score >= 21:
                     if i.score in scores:
-                        game_finished_flag = 0
+                        if i.score == max_score:
+                            game_finished_flag = 0
                     else:
                         scores.append(i.score)
                 if i.score == (max_score - 1):
