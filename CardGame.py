@@ -34,7 +34,7 @@ class Card(object):
 def deck():
     """Returns an list that represents a standard deck of
     52 cards plus four penalty cards"""
-    arr = []
+    list = []
     suits = ['Spades', 'Clubs', 'Hearts', 'Diamonds']
     faces = [2, 3, 4, 5,
              6, 7, 8, 9, 10,
@@ -42,12 +42,12 @@ def deck():
 
     for x in faces:
         for i in suits:
-            arr.append(Card(i, x))
+            list.append(Card(i, x))
 
     for x in range(4):
-        arr.append(Card(x, 'Penalty'))
+        list.append(Card(x, 'Penalty'))
 
-    return arr
+    return list
 
 
 def compare(players_list):
