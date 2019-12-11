@@ -5,11 +5,11 @@ import random
 class Player(object):
     """Creates a player instance"""
 
-    def __init__(self, name, score, number, current_card):
-        """Instances differ by name, score, number, and current card"""
+    def __init__(self, name, score, identifier, current_card):
+        """Instances differ by name, score, id, and current card"""
         self.name = name
         self.score = score
-        self.number = number
+        self.identifier = identifier
         self.current_card = current_card
 
     def change_score(self, result):
@@ -156,8 +156,8 @@ def game():
             if i.score > max_score:
                 max_score = i.score
 
-        #Check that there are no duplicate max scores over 21 and that
-        #scores over 21 exceed all other scores by at least 2
+        #Check that there are no duplicate max scores greater than or equal to 21 and that
+        #scores greater than or equal 21 exceed all other scores by at least 2
         scores = []
         if(max_score >= 21):
             game_finished_flag = 1
